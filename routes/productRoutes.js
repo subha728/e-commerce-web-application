@@ -1,5 +1,5 @@
 const express = require("express");
-const Product = require("../models/Product");
+const product = require("../models/product");
 const protect = require("../middleware/authMiddleware");
 const admin = require("../middleware/adminMiddleware");
 
@@ -8,7 +8,7 @@ const router = express.Router();
 // Add Product (Admin Only)
 router.post("/add", protect, admin, async (req, res) => {
   try {
-    const product = await Product.create(req.body);
+    const product = await product.create(req.body);
     res.status(201).json(product);
   } catch (error) {
     res.status(500).json({ message: error.message });
@@ -18,7 +18,7 @@ router.post("/add", protect, admin, async (req, res) => {
 // Get All Products
 router.get("/", async (req, res) => {
   try {
-    const products = await Product.find();
+    const products = await product.find();
     res.json(products);
   } catch (error) {
     res.status(500).json({ message: error.message });
@@ -28,7 +28,7 @@ router.get("/", async (req, res) => {
 // Get Product By ID
 router.get("/:id", async (req, res) => {
   try {
-    const product = await Product.findById(req.params.id);
+    const product = await product.findById(req.params.id);
 
     if (!product) {
       return res.status(404).json({
@@ -47,7 +47,7 @@ router.get("/:id", async (req, res) => {
 // Update Product (Admin Only)
 router.put("/:id", protect, admin, async (req, res) => {
   try {
-    const product = await Product.findByIdAndUpdate(
+    const product = await product.findByIdAndUpdate(
       req.params.id,
       req.body,
       { new: true }
@@ -64,7 +64,7 @@ router.put("/:id", protect, admin, async (req, res) => {
 // Delete Product (Admin Only)
 router.delete("/:id", protect, admin, async (req, res) => {
   try {
-    await Product.findByIdAndDelete(req.params.id);
+    await product.findByIdAndDelete(req.params.id);
 
     res.json({
       message: "Product deleted successfully",

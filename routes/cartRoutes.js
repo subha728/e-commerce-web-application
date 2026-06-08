@@ -1,5 +1,5 @@
 const express = require("express");
-const Cart = require("../models/Cart");
+const cart = require("../models/cart");
 const protect = require("../middleware/authMiddleware");
 
 const router = express.Router();
@@ -9,12 +9,12 @@ router.post("/add", protect, async (req, res) => {
   try {
     const { productId, quantity } = req.body;
 
-    let cart = await Cart.findOne({
+    let cart = await cart.findOne({
       user: req.user.id,
     });
 
     if (!cart) {
-      cart = await Cart.create({
+      cart = await cart.create({
         user: req.user.id,
         products: [
           {
@@ -43,7 +43,7 @@ router.post("/add", protect, async (req, res) => {
 // Get User Cart
 router.get("/", protect, async (req, res) => {
   try {
-    const cart = await Cart.findOne({
+    const cart = await cart.findOne({
       user: req.user.id,
     }).populate("products.product");
 
