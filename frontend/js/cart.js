@@ -39,12 +39,12 @@ if (!cart || !cart.products || cart.products.length === 0) {
 
 cart.products.forEach((item) => {
   container.innerHTML += `
-    <div class="product">
-      <h3>${item.product?.name || "Product"}</h3>
-      <p>Price: ₹${item.product?.price || 0}</p>
-      <p>Quantity: ${item.quantity}</p>
-    </div>
-  `;
+  <div class="product">
+    <h3>${item.product?.name || "Product"}</h3>
+    <p>Price: ₹${item.product?.price || 0}</p>
+    <p>Quantity: ${item.quantity}</p>
+  </div>
+`;
 });
 ```
 
