@@ -1,5 +1,4 @@
 const express = require("express");
-const cart = require("../models/cart");
 const Cart = require("../models/cart");
 const protect = require("../middleware/authMiddleware");
 
@@ -10,12 +9,12 @@ router.post("/add", protect, async (req, res) => {
   try {
     const { productId, quantity } = req.body;
 
-    let cart = await cart.findOne({
+    let userCart = await Cart.findOne({
       user: req.user.id,
     });
 
-    if (!cart) {
-      cart = await cart.create({
+    if (!userCart) {
+      userCart = await Cart.create({
         user: req.user.id,
         products: [
           {
@@ -25,16 +24,17 @@ router.post("/add", protect, async (req, res) => {
         ],
       });
     } else {
-      cart.products.push({
+      userCart.products.push({
         product: productId,
         quantity,
       });
 
-      await cart.save();
+      await userCart.save();
     }
 
-    res.status(201).json(cart);
+    res.status(201).json(userCart);
   } catch (error) {
+    console.log("Cart Error:", error);
     res.status(500).json({
       message: error.message,
     });
@@ -44,12 +44,13 @@ router.post("/add", protect, async (req, res) => {
 // Get User Cart
 router.get("/", protect, async (req, res) => {
   try {
-    const cart = await cart.findOne({
+    const userCart = await Cart.findOne({
       user: req.user.id,
     }).populate("products.product");
 
-    res.json(cart);
+    res.json(userCart);
   } catch (error) {
+    console.log("Cart Error:", error);
     res.status(500).json({
       message: error.message,
     });
