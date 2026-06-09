@@ -1,9 +1,6 @@
 const express = require("express");
-<<<<<<< HEAD
 const cart = require("../models/cart");
-=======
 const Cart = require("../models/cart");
->>>>>>> bfe0d8b58be8d267e871cbe959048a5d7e661706
 const protect = require("../middleware/authMiddleware");
 
 const router = express.Router();

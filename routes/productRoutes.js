@@ -1,5 +1,5 @@
 const express = require("express");
-const Product = require("../models/Product");
+const Product = require("../models/product");
 const protect = require("../middleware/authMiddleware");
 const admin = require("../middleware/adminMiddleware");
 
