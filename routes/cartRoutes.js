@@ -7,6 +7,9 @@ const router = express.Router();
 // Add Product to Cart
 router.post("/add", protect, async (req, res) => {
   try {
+    console.log("User:", req.user);
+    console.log("Body:", req.body);
+
     const { productId, quantity } = req.body;
 
     let userCart = await Cart.findOne({
@@ -34,27 +37,4 @@ router.post("/add", protect, async (req, res) => {
 
     res.status(201).json(userCart);
   } catch (error) {
-    console.log("Cart Error:", error);
-    res.status(500).json({
-      message: error.message,
-    });
-  }
-});
-
-// Get User Cart
-router.get("/", protect, async (req, res) => {
-  try {
-    const userCart = await Cart.findOne({
-      user: req.user.id,
-    }).populate("products.product");
-
-    res.json(userCart);
-  } catch (error) {
-    console.log("Cart Error:", error);
-    res.status(500).json({
-      message: error.message,
-    });
-  }
-});
-
-module.exports = router;
+    console.error("
