@@ -4,7 +4,7 @@ const orderSchema = new mongoose.Schema(
   {
     user: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "User",
+      ref: "user",
       required: true,
     },
 
@@ -32,4 +32,4 @@ const orderSchema = new mongoose.Schema(
   }
 );
 
-module.exports = mongoose.model("Order", orderSchema);
+module.exports = mongoose.model("order", orderSchema);
