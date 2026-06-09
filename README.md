@@ -22,7 +22,7 @@ Tech Stack
 
 Links
 
-- Frontend: https://e-commerce-web-application-chi.vercel.app/(Live demo)
+- Frontend: https://e-commerce-web-application-chi.vercel.app/ (Live demo)
 - Backend API: https://e-commerce-web-application-x3ga.onrender.com
 - GitHub Repository: https://github.com/subha728/e-commerce-web-application
 
