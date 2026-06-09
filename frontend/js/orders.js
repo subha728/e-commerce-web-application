@@ -4,7 +4,7 @@ const token = localStorage.getItem("token");
 if (!token) {
   alert("Please login first");
 } else {
-  fetch("http://localhost:5000/api/orders", {
+  fetch("https://e-commerce-web-application-x3ga.onrender.com/api/orders", {
     headers: {
       Authorization: token,
     },

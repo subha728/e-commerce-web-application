@@ -3,7 +3,7 @@ async function login() {
   const password = document.getElementById("password").value;
 
   const response = await fetch(
-    "http://localhost:5000/api/users/login",
+    "https://e-commerce-web-application-x3ga.onrender.com/api/users/login",
     {
       method: "POST",
       headers: {

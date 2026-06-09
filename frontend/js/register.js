@@ -4,7 +4,7 @@ async function registerUser() {
   const password = document.getElementById("password").value;
 
   const response = await fetch(
-    "http://localhost:5000/api/users/register",
+    "https://e-commerce-web-application-x3ga.onrender.com/api/users/register",
     {
       method: "POST",
       headers: {

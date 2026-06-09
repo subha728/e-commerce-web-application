@@ -1,4 +1,4 @@
-fetch("http://localhost:5000/api/products")
+fetch("https://e-commerce-web-application-x3ga.onrender.com/api/products")
   .then((res) => res.json())
   .then((products) => {
     const container = document.getElementById("products");
@@ -35,7 +35,7 @@ async function addToCart(productId) {
   }
 
   const response = await fetch(
-    "http://localhost:5000/api/cart/add",
+    "https://e-commerce-web-application-x3ga.onrender.com/api/cart/add",
     {
       method: "POST",
       headers: {

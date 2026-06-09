@@ -4,7 +4,7 @@ const token = localStorage.getItem("token");
 if (!token) {
   alert("Please login first");
 } else {
-  fetch("http://localhost:5000/api/cart", {
+  fetch("https://e-commerce-web-application-x3ga.onrender.com/api/cart", {
     headers: {
       Authorization: token,
     },
@@ -28,7 +28,7 @@ async function placeOrder() {
   const token = localStorage.getItem("token");
 
   const response = await fetch(
-    "http://localhost:5000/api/orders/place",
+    "https://e-commerce-web-application-x3ga.onrender.com/api/orders/place",
     {
       method: "POST",
       headers: {
