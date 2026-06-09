@@ -1,31 +1,3 @@
-fetch("https://e-commerce-web-application-x3ga.onrender.com/api/products")
-  .then((res) => res.json())
-  .then((products) => {
-    const container = document.getElementById("products");
-
-    products.forEach((product) => {
-      container.innerHTML += `
-<div class="product">
-    <img
-      src="https://via.placeholder.com/250x150"
-      alt="product"
-      style="width:100%; border-radius:8px; margin-bottom:10px;"
-    >
-
-    <h3>${product.name}</h3>
-
-    <p><strong>Price:</strong> ₹${product.price}</p>
-
-    <p>${product.description}</p>
-
-    <button onclick="addToCart('${product._id}')">
-      Add To Cart
-    </button>
-</div>
-      `;
-    });
-  });
-
 async function addToCart(productId) {
   const token = localStorage.getItem("token");
 
@@ -34,23 +6,35 @@ async function addToCart(productId) {
     return;
   }
 
-  const response = await fetch(
-    "https://e-commerce-web-application-x3ga.onrender.com/api/cart/add",
-    {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "Authorization": token
-      },
-      body: JSON.stringify({
-        productId,
-        quantity: 1
-      })
+  try {
+    const response = await fetch(
+      "https://e-commerce-web-application-x3ga.onrender.com/api/cart/add",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: token,
+        },
+        body: JSON.stringify({
+          productId,
+          quantity: 1,
+        }),
+      }
+    );
+
+    const data = await response.json();
+
+    console.log("Status:", response.status);
+    console.log("Response:", data);
+
+    if (!response.ok) {
+      alert("Error: " + (data.message || "Failed to add to cart"));
+      return;
     }
-  );
 
-  const data = await response.json();
-
-  alert("Product added to cart");
-  console.log(data);
+    alert(JSON.stringify(data, null, 2));
+  } catch (error) {
+    console.error("Add To Cart Error:", error);
+    alert("Failed to add product to cart");
+  }
 }
