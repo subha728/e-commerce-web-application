@@ -8,7 +8,7 @@ fetch("http://localhost:5000/api/products")
 <div class="product">
     <img
       src="https://via.placeholder.com/250x150"
-      alt="Product"
+      alt="product"
       style="width:100%; border-radius:8px; margin-bottom:10px;"
     >
 
