@@ -1,9 +1,5 @@
 const express = require("express");
-<<<<<<< HEAD
-const product = require("../models/product");
-=======
-const Product = require("../models/product");
->>>>>>> bfe0d8b58be8d267e871cbe959048a5d7e661706
+const Product = require("../models/Product");
 const protect = require("../middleware/authMiddleware");
 const admin = require("../middleware/adminMiddleware");
 
@@ -80,9 +76,6 @@ router.put("/:id", protect, admin, async (req, res) => {
 // Delete Product (Admin Only)
 router.delete("/:id", protect, admin, async (req, res) => {
   try {
-<<<<<<< HEAD
-    await product.findByIdAndDelete(req.params.id);
-=======
     const product = await Product.findByIdAndDelete(req.params.id);
 
     if (!product) {
@@ -90,7 +83,6 @@ router.delete("/:id", protect, admin, async (req, res) => {
         message: "Product not found",
       });
     }
->>>>>>> bfe0d8b58be8d267e871cbe959048a5d7e661706
 
     res.json({
       message: "Product deleted successfully",
