@@ -1,5 +1,9 @@
-checkLogin();
 const token = localStorage.getItem("token");
+
+if (!token) {
+  alert("Please login first");
+  window.location.href = "login.html";
+}
 
 if (!token) {
   alert("Please login first");
